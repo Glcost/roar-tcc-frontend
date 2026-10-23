@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROAR — Desempenho</title>
+
+    <meta name="description" content="Acompanhe seu progresso e desempenho no ROAR.">
+    <script src="../../public/js/roar-theme.js"></script>
+    <link rel="icon" href="../../public/assets/imagens/favicon-v2.png?v=4" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="../../public/css/global.css">
+
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css">
+
+    <link rel="stylesheet" href="../../public/css/pages/pages-aluno-desempenho.css">
+</head>
+
+<body data-auth-role="student">
+    <div class="app-shell">
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__logo-wrap">
+                <a href="inicio.html" aria-label="Ir para o início">
+                    <img src="../../public/assets/imagens/logo.svg" alt="Logo ROAR" class="sidebar__logo">
+                </a>
+
+                <button class="sidebar__toggle" id="sidebarToggle" type="button" aria-label="Minimizar menu">
+                    <i class="fi fi-br-menu-burger"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar__nav">
+                <a href="inicio.html" class="sidebar__link">
+                    <i class="fi fi-br-home"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="atividades.html" class="sidebar__link">
+                    <i class="fi fi-br-puzzle-pieces"></i>
+                    <span>Atividades</span>
+                </a>
+
+                <a href="missoes.html" class="sidebar__link">
+                    <i class="fi fi-br-list-check"></i>
+                    <span>Missões</span>
+                </a>
+
+                <a href="desempenho.html" class="sidebar__link active" aria-current="page">
+                    <i class="fi fi-br-chart-simple"></i>
+                    <span>Desempenho</span>
+                </a>
+
+                <a href="loja.html" class="sidebar__link" id="nav-loja">
+                    <i class="fi fi-br-shop"></i>
+                    <span>Loja de Dinos</span>
+                </a>
+
+                <a href="perfil.html" class="sidebar__link">
+                    <i class="fi fi-br-user"></i>
+                    <span>Perfil</span>
+                </a>
+
+                <a href="conquistas.html" class="sidebar__link"><i
+                        class="fi fi-br-trophy"></i><span>Conquistas</span></a>
+
+                <a href="configuracoes.html" class="sidebar__link">
+                    <i class="fi fi-br-settings"></i>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__footer">
+                <a href="../auth/login-aluno.html" id="nav-logout" class="sidebar__link" data-action="logout"
+                    data-no-transition>
+                    <i class="fi fi-br-exit" aria-hidden="true"></i>
+
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar">
+                <div class="u-pages-aluno-desempenho-001">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                        <i class="fi fi-br-menu-burger"></i>
+                    </button>
+
+                    <div class="navbar__page-title">
+                        <h1>Desempenho</h1>
+                        <p>Acompanhe sua evolução real nas atividades.</p>
+                    </div>
+                </div>
+
+                <div class="navbar__right">
+                    <a href="perfil.html" class="navbar__avatar" id="studentAvatar" title="Perfil"
+                        aria-label="Abrir perfil">
+                        A
+                    </a>
+                </div>
+            </header>
+
+            <main class="page-body fade-in">
+                <div class="tabs" role="tablist" aria-label="Período do desempenho">
+                    <button class="tab-btn active" type="button" data-tab="visao" role="tab">
+                        Visão Geral
+                    </button>
+
+                    <button class="tab-btn" type="button" data-tab="semanal" role="tab">
+                        Esta Semana
+                    </button>
+
+                    <button class="tab-btn" type="button" data-tab="mensal" role="tab">
+                        Este Mês
+                    </button>
+                </div>
+
+                <section class="grid-4 stats-overview u-pages-aluno-desempenho-002" aria-label="Resumo do desempenho">
+                    <article class="big-stat">
+                        <div class="big-stat__icon stat-card__icon--xp">
+                            <i class="fi fi-br-star"></i>
+                        </div>
+
+                        <div class="big-stat__value" id="xpTotal">
+                            0
+                        </div>
+
+                        <div class="big-stat__label">
+                            XP Total
+                        </div>
+                    </article>
+
+                    <article class="big-stat">
+                        <div class="big-stat__icon u-pages-aluno-desempenho-003">
+                            <i class="fi fi-br-check-circle"></i>
+                        </div>
+
+                        <div class="big-stat__value" id="completedActivities">
+                            0
+                        </div>
+
+                        <div class="big-stat__label">
+                            Atividades concluídas
+                        </div>
+                    </article>
+
+                    <article class="big-stat">
+                        <div class="big-stat__icon stat-card__icon--streak">
+                            <i class="fi fi-br-exclamation"></i>
+                        </div>
+
+                        <div class="big-stat__value" id="averageErrors">
+                            0
+                        </div>
+
+                        <div class="big-stat__label">
+                            Média de erros
+                        </div>
+                    </article>
+
+                    <article class="big-stat">
+                        <div class="big-stat__icon stat-card__icon--star">
+                            <i class="fi fi-br-time-fast"></i>
+                        </div>
+
+                        <div class="big-stat__value" id="averageTime">
+                            0s
+                        </div>
+
+                        <div class="big-stat__label">
+                            Tempo médio
+                        </div>
+                    </article>
+                </section>
+
+                <section class="grid-2 charts-grid u-pages-aluno-desempenho-002">
+                    <article class="card">
+                        <div class="section-header mb-md">
+                            <h2>
+                                Evolução
+                                <span id="periodoLabel">Geral</span>
+                            </h2>
+
+                            <span class="badge badge--blue">
+                                Tentativas por dia
+                            </span>
+                        </div>
+
+                        <div class="bar-chart" id="barChart" aria-live="polite"></div>
+                    </article>
+
+                    <article class="card">
+                        <div class="section-header mb-md">
+                            <h2>Taxa de conclusão</h2>
+
+                            <span class="badge badge--green">
+                                Atividades únicas
+                            </span>
+                        </div>
+
+                        <div class="donut-wrap">
+                            <div class="donut">
+                                <canvas id="donutCanvas" width="130" height="130"
+                                    aria-label="Gráfico de taxa de conclusão"></canvas>
+
+                                <div class="donut__center">
+                                    <span class="donut__pct" id="completionPercentage">
+                                        0%
+                                    </span>
+
+                                    <span class="donut__lbl">
+                                        concluídas
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="donut-legend">
+                                <div class="legend-item">
+                                    <div class="legend-dot u-pages-aluno-desempenho-004"></div>
+
+                                    <span>
+                                        Concluídas:
+                                        <strong id="completedLegend">0%</strong>
+                                    </span>
+                                </div>
+
+                                <div class="legend-item">
+                                    <div class="legend-dot u-pages-aluno-desempenho-005"></div>
+
+                                    <span>
+                                        Pendentes:
+                                        <strong id="remainingLegend">100%</strong>
+                                    </span>
+                                </div>
+
+                                <div class="u-pages-aluno-desempenho-006">
+                                    <div class="legend-item">
+                                        <i class="fi fi-br-time-fast u-pages-aluno-desempenho-007"></i>
+
+                                        Tempo médio:
+
+                                        <strong class="u-pages-aluno-desempenho-008" id="averageTimeLegend">
+                                            0s
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="grid-2 charts-grid u-pages-aluno-desempenho-002">
+                    <article class="card">
+                        <div class="section-header mb-md">
+                            <h2>Desempenho por módulo</h2>
+                        </div>
+
+                        <div id="catProgressList" aria-live="polite"></div>
+                    </article>
+
+                    <article class="card">
+                        <div class="section-header mb-md">
+                            <h2>Histórico recente</h2>
+                        </div>
+
+                        <div id="recentHistory" aria-live="polite"></div>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="../../public/js/pages/auth/route-guard.js"></script>
+
+    <script src="../../public/js/roar-page-transition.js"></script>
+
+    <script type="module" src="../../public/js/roar-sidebar.js"></script>
+    <script src="../../public/js/roar-avatar.js"></script>
+
+    <script type="module" src="../../public/js/pages/aluno/pages-aluno-desempenho-1.js"></script>
+</body>
+
+</html>

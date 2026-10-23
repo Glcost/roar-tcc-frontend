@@ -1,0 +1,85 @@
+/* ============================================================
+   ROAR — transitions.css
+   Transições suaves e elegantes entre páginas HTML
+   ============================================================ */
+
+
+
+/* 2. Animação de Entrada de Página (Universal) */
+@keyframes roarBodyEnter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes roarContentEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: roarBodyEnter 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.auth-card,
+.main-content,
+main {
+    animation: roarContentEnter 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+    will-change: opacity, transform;
+}
+
+/* 3. Transição de Saída (Ao navegar via link ou ação de navegação) */
+body.roar-page-exiting {
+    opacity: 0 !important;
+    transition: opacity 0.12s cubic-bezier(0.4, 0, 1, 1) !important;
+    pointer-events: none !important;
+}
+
+body.roar-page-exiting .auth-card,
+body.roar-page-exiting .main-content,
+body.roar-page-exiting main {
+    transform: translateY(-4px) !important;
+    transition: transform 0.12s cubic-bezier(0.4, 0, 1, 1) !important;
+}
+
+/* 4. Acessibilidade — Respeito estrito a Usuários com Sensibilidade a Movimento */
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+
+    body {
+        animation: none !important;
+    }
+
+    .auth-card,
+    .main-content,
+    main {
+        animation: none !important;
+        transform: none !important;
+        will-change: auto !important;
+    }
+
+    body.roar-page-exiting {
+        opacity: 1 !important;
+        transition: none !important;
+    }
+
+    body.roar-page-exiting .auth-card,
+    body.roar-page-exiting .main-content,
+    body.roar-page-exiting main {
+        transform: none !important;
+        transition: none !important;
+    }
+}

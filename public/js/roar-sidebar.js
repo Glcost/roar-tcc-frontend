@@ -1,0 +1,324 @@
+/* ============================================================
+   ROAR — roar-sidebar.js
+   Sidebar, logout e toast compartilhados entre páginas
+   ============================================================ */
+
+function initSidebar() {
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const toggle =
+        document.getElementById("sidebarToggle");
+
+    const backdrop =
+        document.getElementById("sidebarBackdrop");
+
+    const mobileButton =
+        document.getElementById("mobileMenuBtn");
+
+
+    const responsiveMenu = window.matchMedia("(max-width: 1024px)");
+
+    function setMenuOpen(isOpen) {
+        if (!sidebar || !backdrop) return;
+        sidebar.classList.toggle("open", isOpen);
+        backdrop.classList.toggle("open", isOpen);
+        document.body.classList.toggle("sidebar-menu-open", isOpen);
+        mobileButton?.setAttribute("aria-expanded", String(isOpen));
+        toggle?.setAttribute("aria-expanded", String(isOpen));
+        toggle?.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    }
+
+    const savedCollapsed =
+        localStorage.getItem("sidebarCollapsed") === "true";
+
+    if (savedCollapsed) {
+        document.documentElement.classList.add("sidebar-collapsed");
+        if (sidebar) {
+            sidebar.classList.add("sidebar--collapsed");
+        }
+    } else {
+        document.documentElement.classList.remove("sidebar-collapsed");
+        if (sidebar) {
+            sidebar.classList.remove("sidebar--collapsed");
+        }
+    }
+
+    // Libera transições da sidebar apenas após o layout inicial estar pronto
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.documentElement.classList.add("sidebar-ready");
+        });
+    });
+
+    if (toggle && sidebar) {
+        toggle.addEventListener("click", () => {
+            if (responsiveMenu.matches) {
+                setMenuOpen(!sidebar.classList.contains("open"));
+                return;
+            }
+
+            const isNowCollapsed =
+                sidebar.classList.toggle("sidebar--collapsed");
+
+            document.documentElement.classList.toggle(
+                "sidebar-collapsed",
+                isNowCollapsed,
+            );
+
+            localStorage.setItem(
+                "sidebarCollapsed",
+                String(isNowCollapsed),
+            );
+        });
+    }
+
+    if (mobileButton && sidebar && backdrop) {
+        mobileButton.addEventListener("click", () => {
+            setMenuOpen(!sidebar.classList.contains("open"));
+        });
+    }
+
+    if (backdrop && sidebar) {
+        backdrop.addEventListener("click", () => setMenuOpen(false));
+    }
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && sidebar?.classList.contains("open")) {
+            setMenuOpen(false);
+            mobileButton?.focus();
+        }
+    });
+
+    responsiveMenu.addEventListener("change", () => setMenuOpen(false));
+
+    sidebar?.querySelectorAll(".sidebar__link").forEach((link) => {
+        link.addEventListener("click", () => {
+            if (responsiveMenu.matches) setMenuOpen(false);
+        });
+    });
+
+    function updateActiveSidebarLink() {
+        const currentFile = window.location.pathname.split("/").pop().toLowerCase();
+        if (!currentFile) return;
+
+        const links = document.querySelectorAll(".sidebar__nav .sidebar__link");
+        links.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (!href) return;
+            const targetFile = href.split("/").pop().split("?")[0].split("#")[0].toLowerCase();
+            if (targetFile === currentFile) {
+                link.classList.add("active");
+                link.setAttribute("aria-current", "page");
+            }
+        });
+    }
+    updateActiveSidebarLink();
+
+    initLogout();
+}
+
+function getCurrentSession() {
+    try {
+        const rawSession =
+            localStorage.getItem(
+                "roarSession",
+            );
+
+        return rawSession
+            ? JSON.parse(rawSession)
+            : null;
+    } catch (error) {
+        console.warn(
+            "Não foi possível ler a sessão atual.",
+            error,
+        );
+
+        return null;
+    }
+}
+
+function getLoginUrl(
+    session,
+    logoutLink,
+) {
+    /*
+     * Se o próprio link já aponta para uma
+     * página de login, utiliza esse endereço.
+     */
+    const declaredUrl =
+        logoutLink.getAttribute("href");
+
+    if (
+        declaredUrl &&
+        declaredUrl.includes("login-")
+    ) {
+        return declaredUrl;
+    }
+
+    const pageRole =
+        document.body.dataset.authRole;
+
+    const sessionRole = String(
+        session?.role ??
+        session?.tipo ??
+        "",
+    ).toLocaleLowerCase("pt-BR");
+
+    const isTeacher =
+        pageRole === "teacher" ||
+        pageRole === "professor" ||
+        sessionRole === "teacher" ||
+        sessionRole === "professor";
+
+    return isTeacher
+        ? "../auth/login-professor.html"
+        : "../auth/login-aluno.html";
+}
+
+function initLogout() {
+    /*
+     * Reconhece as diferentes identificações de
+     * logout que já existem nas páginas do projeto.
+     */
+    const logoutLinks =
+        document.querySelectorAll(
+            [
+                '[data-action="logout"]',
+                "#logoutButton",
+                "#nav-logout",
+            ].join(", "),
+        );
+
+    logoutLinks.forEach((logoutLink) => {
+        /*
+         * Impede o registro duplicado do evento
+         * caso a sidebar seja inicializada novamente.
+         */
+        if (
+            logoutLink.dataset.logoutReady ===
+            "true"
+        ) {
+            return;
+        }
+
+        logoutLink.dataset.logoutReady = "true";
+
+        logoutLink.addEventListener(
+            "click",
+            (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+
+                const session =
+                    getCurrentSession();
+
+                const loginUrl =
+                    getLoginUrl(
+                        session,
+                        logoutLink,
+                    );
+
+                /*
+                 * Limpa exclusivamente a sessão.
+                 * As preferências pessoais continuam
+                 * salvas para o próximo login.
+                 */
+                localStorage.removeItem(
+                    "roarSession",
+                );
+
+                if (
+                    "speechSynthesis" in window
+                ) {
+                    window.speechSynthesis.cancel();
+                }
+
+                window.location.replace(
+                    loginUrl,
+                );
+            },
+
+            /*
+             * Captura o clique antes do controlador
+             * global de transições.
+             */
+            true,
+        );
+
+    });
+}
+
+function showToast(
+    message,
+    type,
+) {
+    const container =
+        document.getElementById(
+            "toast-container",
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const toast =
+        document.createElement("div");
+
+    toast.className =
+        "toast" +
+        (type ? ` toast--${type}` : "");
+
+    const icon =
+        document.createElement("i");
+
+    icon.className =
+        "fi fi-br-info";
+
+    icon.setAttribute(
+        "aria-hidden",
+        "true",
+    );
+
+    const text =
+        document.createElement("span");
+
+    text.textContent =
+        String(message ?? "");
+
+    toast.append(
+        icon,
+        document.createTextNode(" "),
+        text,
+    );
+
+    container.appendChild(toast);
+
+    window.setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+/*
+ * Inicializa mesmo se o arquivo for carregado
+ * depois do evento DOMContentLoaded.
+ */
+if (
+    document.readyState === "loading"
+) {
+    document.addEventListener(
+        "DOMContentLoaded",
+        initSidebar,
+        { once: true },
+    );
+} else {
+    initSidebar();
+}
+
+/*
+ * Mantém compatibilidade com páginas antigas
+ * que utilizem window.showToast.
+ */
+window.showToast =
+    window.showToast || showToast;

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Perfil do estudante no sistema ROAR.">
+
+    <title>ROAR — Perfil do Estudante</title>
+    <script src="../../public/js/roar-theme.js"></script>
+    <link rel="icon" href="../../public/assets/imagens/favicon-v2.png?v=4" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="../../public/css/global.css">
+
+    <link rel="stylesheet" href="../../public/css/components/feedback.css">
+
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css">
+
+    <link rel="stylesheet" href="../../public/css/pages/pages-aluno-perfil.css">
+</head>
+
+<body class="student-area" data-auth-role="student">
+    <div class="app-shell">
+        <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+        <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+            <div class="sidebar__logo-wrap">
+                <a href="inicio.html" aria-label="Ir para o início">
+                    <img src="../../public/assets/imagens/logo.svg" alt="Logo ROAR" class="sidebar__logo">
+                </a>
+
+                <button class="sidebar__toggle" id="sidebarToggle" type="button" aria-label="Minimizar menu"
+                    aria-controls="sidebar">
+                    <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar__nav" aria-label="Navegação do aluno">
+                <a href="inicio.html" class="sidebar__link">
+                    <i class="fi fi-br-home" aria-hidden="true"></i>
+
+                    <span>Início</span>
+                </a>
+
+                <a href="atividades.html" class="sidebar__link">
+                    <i class="fi fi-br-puzzle-pieces" aria-hidden="true"></i>
+
+                    <span>Atividades</span>
+                </a>
+
+                <a href="missoes.html" class="sidebar__link">
+                    <i class="fi fi-br-list-check"></i>
+                    <span>Missões</span>
+                </a>
+
+                <a href="desempenho.html" class="sidebar__link">
+                    <i class="fi fi-br-chart-simple" aria-hidden="true"></i>
+
+                    <span>Desempenho</span>
+                </a>
+
+                <a href="loja.html" class="sidebar__link" id="nav-loja">
+                    <i class="fi fi-br-shop" aria-hidden="true"></i>
+
+                    <span>Loja de Dinos</span>
+                </a>
+
+                <a href="perfil.html" class="sidebar__link active" aria-current="page">
+                    <i class="fi fi-br-user" aria-hidden="true"></i>
+
+                    <span>Perfil</span>
+                </a>
+
+                <a href="conquistas.html" class="sidebar__link"><i
+                        class="fi fi-br-trophy"></i><span>Conquistas</span></a>
+
+                <a href="configuracoes.html" class="sidebar__link">
+                    <i class="fi fi-br-settings" aria-hidden="true"></i>
+
+                    <span>Configurações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__footer">
+                <a href="../auth/login-aluno.html" id="nav-logout" class="sidebar__link" data-action="logout"
+                    data-no-transition>
+                    <i class="fi fi-br-exit" aria-hidden="true"></i>
+
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar">
+                <div class="u-pages-aluno-perfil-001">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu"
+                        aria-controls="sidebar">
+                        <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="navbar__page-title">
+                        <h1>Meu perfil</h1>
+
+                        <p>
+                            Veja suas informações de aprendizagem.
+                        </p>
+                    </div>
+                </div>
+
+                <a href="perfil.html" class="navbar__avatar" id="navbarAvatar" title="Meu perfil"
+                    aria-label="Abrir perfil">
+                    A
+                </a>
+            </header>
+
+            <main class="page-body fade-in">
+                <section class="profile-hero" aria-labelledby="studentName">
+                    <div class="profile-hero__avatar-wrap" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                        <div class="avatar avatar--xl u-pages-aluno-perfil-002" id="profileAvatar" aria-hidden="true">
+                            A
+                        </div>
+                        <a href="loja.html" class="btn btn--secondary btn--sm" style="font-size: 0.78rem; padding: 4px 10px; border-radius: var(--r-full);">
+                            <i class="fi fi-br-shop"></i> Trocar Mascote
+                        </a>
+                    </div>
+
+                    <div class="profile-hero__info">
+                        <div class="profile-hero__name">
+                            <span id="studentName">
+                                Carregando perfil...
+                            </span>
+
+                            <span class="badge badge--blue">
+                                Aluno
+                            </span>
+                        </div>
+
+                        <div class="profile-hero__meta">
+                            <span id="studentSchoolYear">
+                                Ano escolar: —
+                            </span>
+
+                            <span id="studentEmail">
+                                E-mail: —
+                            </span>
+                        </div>
+
+                        <div class="profile-hero__comm">
+                            <i class="fi fi-br-brain u-pages-aluno-perfil-004" aria-hidden="true"></i>
+
+                            <div>
+                                <div class="u-pages-aluno-perfil-005">
+                                    Modo de aprendizagem
+                                </div>
+
+                                <strong id="studentLearningMode">
+                                    Carregando...
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-progress-card">
+                        <div class="profile-progress-card__icon">
+                            <i class="fi fi-br-star" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="profile-progress-card__lbl">
+                            XP total
+                        </div>
+
+                        <div class="profile-progress-card__pct" id="studentXp">
+                            0
+                        </div>
+
+                        <div class="profile-progress-card__sub">
+                            Continue aprendendo!
+                        </div>
+                    </div>
+                </section>
+
+                <div class="info-grid">
+                    <section class="card">
+                        <div class="u-pages-aluno-perfil-008">
+                            <div class="info-item__icon u-pages-aluno-perfil-009">
+                                <i class="fi fi-br-user" aria-hidden="true"></i>
+                            </div>
+
+                            <h2 class="u-pages-aluno-perfil-010">
+                                Dados do estudante
+                            </h2>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-item__icon u-pages-aluno-perfil-011">
+                                <i class="fi fi-br-id-badge" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="info-item__body">
+                                <div class="info-item__label">
+                                    Identificador
+                                </div>
+
+                                <div class="info-item__value" id="studentId">
+                                    —
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-item__icon u-pages-aluno-perfil-012">
+                                <i class="fi fi-br-envelope" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="info-item__body">
+                                <div class="info-item__label">
+                                    E-mail
+                                </div>
+
+                                <div class="info-item__value" id="studentEmailDetail">
+                                    —
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-item__icon u-pages-aluno-perfil-011">
+                                <i class="fi fi-br-graduation-cap" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="info-item__body">
+                                <div class="info-item__label">
+                                    Ano escolar
+                                </div>
+
+                                <div class="info-item__value" id="studentSchoolYearDetail">
+                                    —
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="u-pages-aluno-perfil-008">
+                            <div class="info-item__icon u-pages-aluno-perfil-013">
+                                <i class="fi fi-br-brain" aria-hidden="true"></i>
+                            </div>
+
+                            <h2 class="u-pages-aluno-perfil-010">
+                                Aprendizagem
+                            </h2>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-item__icon u-pages-aluno-perfil-014">
+                                <i class="fi fi-br-layers" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="info-item__body">
+                                <div class="info-item__label">
+                                    Nível de suporte
+                                </div>
+
+                                <div class="info-item__value" id="studentLevel">
+                                    —
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-item__icon u-pages-aluno-perfil-014">
+                                <i class="fi fi-br-book-open-cover" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="info-item__body">
+                                <div class="info-item__label">
+                                    Modo de aprendizagem
+                                </div>
+
+                                <div class="info-item__value" id="studentLearningModeDetail">
+                                    —
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-item__icon u-pages-aluno-perfil-014">
+                                <i class="fi fi-br-star" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="info-item__body">
+                                <div class="info-item__label">
+                                    Experiência acumulada
+                                </div>
+
+                                <div class="info-item__value" id="studentXpDetail">
+                                    0 XP
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <section class="card student-profile-notice">
+                    <div class="u-pages-aluno-perfil-008">
+                        <div class="info-item__icon u-pages-aluno-perfil-020">
+                            <i class="fi fi-br-info" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <h2 class="u-pages-aluno-perfil-010">
+                                Sobre seus dados
+                            </h2>
+
+                            <p id="profileStatus">
+                                Carregando suas informações...
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        O nome, o ano escolar e o modo de aprendizagem
+                        são definidos pelo professor responsável.
+                    </p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="../../public/js/pages/auth/route-guard.js"></script>
+
+    <script src="../../public/js/roar-page-transition.js"></script>
+
+    <script type="module" src="../../public/js/roar-sidebar.js"></script>
+    <script src="../../public/js/roar-avatar.js"></script>
+
+    <script type="module" src="../../public/js/pages/aluno/pages-aluno-perfil-1.js"></script>
+</body>
+
+</html>

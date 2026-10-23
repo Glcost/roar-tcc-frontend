@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROAR — Dashboard Professor</title>
+    <link rel="icon" href="../../public/assets/imagens/favicon-v2.png?v=4" type="image/png" sizes="32x32">
+
+    <meta name="description" content="Dashboard do professor no sistema ROAR.">
+
+    <script src="../../public/js/roar-theme.js"></script>
+    <link rel="stylesheet" href="../../public/css/global.css">
+
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css">
+
+    <link rel="stylesheet" href="../../public/css/components/feedback.css">
+
+    <link rel="stylesheet" href="../../public/css/pages/pages-professor-inicio.css">
+</head>
+
+<body class="teacher-area" data-auth-role="teacher">
+    <div class="app-shell">
+        <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar__logo-wrap">
+                <a href="inicio.html" aria-label="Ir para o início">
+                    <img class="sidebar__logo" src="../../public/assets/imagens/logo.svg" alt="Logo ROAR">
+                </a>
+
+                <button id="sidebarToggle" class="sidebar__toggle" type="button" aria-label="Minimizar menu"
+                    aria-expanded="true">
+                    <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar__nav" aria-label="Navegação do professor">
+                <a href="inicio.html" class="sidebar__link active" aria-current="page">
+                    <i class="fi fi-br-home" aria-hidden="true"></i>
+                    <span>Início</span>
+                </a>
+
+                <a href="alunos.html" class="sidebar__link">
+                    <i class="fi fi-br-users" aria-hidden="true"></i>
+                    <span>Alunos</span>
+                </a>
+
+                <a href="atividades.html" class="sidebar__link">
+                    <i class="fi fi-br-puzzle-pieces" aria-hidden="true"></i>
+                    <span>Atividades</span>
+                </a>
+
+                <a href="relatorios.html" class="sidebar__link">
+                    <i class="fi fi-br-chart-simple" aria-hidden="true"></i>
+                    <span>Relatórios</span>
+                </a>
+
+                <a href="perfil.html" class="sidebar__link">
+                    <i class="fi fi-br-user" aria-hidden="true"></i>
+                    <span>Perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__footer">
+                <a id="logoutButton" class="sidebar__link" href="../auth/login-professor.html" data-action="logout">
+                    <i class="fi fi-br-exit" aria-hidden="true"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar">
+                <div class="u-pages-professor-inicio-001">
+                    <button id="mobileMenuBtn" class="mobile-menu-btn" type="button" aria-label="Abrir menu"
+                        aria-expanded="false">
+                        <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="navbar__page-title">
+                        <h1>Visão geral</h1>
+
+                        <p>
+                            Resumo da turma e itens que precisam de atenção.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="navbar__right u-pages-professor-inicio-001">
+                    <a href="cadastro-aluno.html" class="btn btn--primary u-pages-professor-inicio-003">
+                        <i class="fi fi-br-plus u-pages-professor-inicio-004" aria-hidden="true"></i>
+                        Novo aluno
+                    </a>
+
+                    <a id="teacherAvatar" href="perfil.html" class="navbar__avatar u-pages-professor-inicio-007"
+                        title="Perfil" aria-label="Abrir perfil">
+                        P
+                    </a>
+                </div>
+            </header>
+
+            <main class="page-body fade-in">
+                <section class="grid-4 u-pages-professor-inicio-008" aria-label="Estatísticas da turma">
+                    <article class="stat-card">
+                        <div class="stat-card__icon u-pages-professor-inicio-009">
+                            <i class="fi fi-br-users" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <div class="stat-card__label">
+                                Total de alunos
+                            </div>
+
+                            <div id="totalStudents" class="stat-card__value">
+                                —
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-card__icon u-pages-professor-inicio-010">
+                            <i class="fi fi-br-puzzle-pieces" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <div class="stat-card__label">
+                                Atividades cadastradas
+                            </div>
+
+                            <div id="totalActivities" class="stat-card__value">
+                                —
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-card__icon u-pages-professor-inicio-011">
+                            <i class="fi fi-br-star" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <div class="stat-card__label">
+                                Média da turma
+                            </div>
+
+                            <div id="classAverage" class="stat-card__value">
+                                —
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-card__icon u-pages-professor-inicio-012">
+                            <i class="fi fi-br-chart-simple" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <div class="stat-card__label">
+                                Conclusões registradas
+                            </div>
+
+                            <div id="totalCompletions" class="stat-card__value">
+                                —
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="grid-2 u-pages-professor-inicio-008">
+                    <article class="card">
+                        <div class="section-header mb-md">
+                            <h2>
+                                Alunos e níveis de suporte
+                            </h2>
+
+                            <a href="alunos.html" class="btn btn--secondary btn--sm">
+                                Ver todos
+                            </a>
+                        </div>
+
+                        <div id="alunosNivelList" aria-live="polite">
+                            Carregando alunos...
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="section-header mb-md">
+                            <h2>
+                                Precisam de atenção
+                            </h2>
+
+                            <span id="attentionCount" class="badge badge--blue">
+                                —
+                            </span>
+                        </div>
+
+                        <div id="attentionList" aria-live="polite">
+                            Carregando dados...
+                        </div>
+                    </article>
+                </section>
+
+                <section class="grid-2">
+                    <article class="card">
+                        <div class="section-header mb-md">
+                            <h2>
+                                Desempenho por aluno
+                            </h2>
+                        </div>
+
+                        <label class="sr-only" for="histAluno">
+                            Selecione um aluno
+                        </label>
+
+                        <select id="histAluno" class="u-pages-professor-inicio-013" disabled>
+                            <option>
+                                Carregando alunos...
+                            </option>
+                        </select>
+
+                        <div class="hist-row hist-header">
+                            <span>Indicador</span>
+
+                            <span class="u-pages-professor-inicio-014">
+                                Valor
+                            </span>
+
+                            <span class="u-pages-professor-inicio-014">
+                                Resumo
+                            </span>
+                        </div>
+
+                        <div id="histList" aria-live="polite"></div>
+                    </article>
+
+                    <article class="card u-pages-professor-inicio-015">
+                        <div class="section-header mb-md">
+                            <h2>
+                                Relatório pedagógico
+                            </h2>
+                        </div>
+
+                        <p class="u-pages-professor-inicio-016">
+                            Gere um resumo com base nos dados de
+                            desempenho registrados na plataforma.
+                        </p>
+
+                        <label class="sr-only" for="relAluno">
+                            Aluno do relatório
+                        </label>
+
+                        <select id="relAluno" class="u-pages-professor-inicio-013" disabled>
+                            <option>
+                                Carregando alunos...
+                            </option>
+                        </select>
+
+                        <button id="generateReportButton" class="btn btn--primary u-pages-professor-inicio-017"
+                            type="button" disabled>
+                            Gerar relatório
+                        </button>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <div id="modalRelatorio" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="reportModalTitle">
+        <div class="modal-box">
+            <div class="u-pages-professor-inicio-019">
+                <h2 id="reportModalTitle" class="u-pages-professor-inicio-020">
+                    Relatório pedagógico
+                </h2>
+
+                <button id="closeReportButton" class="u-pages-professor-inicio-021" type="button"
+                    aria-label="Fechar relatório">
+                    <i class="fi fi-br-cross" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <textarea id="relatorioTexto" class="u-pages-professor-inicio-022" aria-label="Conteúdo do relatório"
+                readonly></textarea>
+
+            <div class="u-pages-professor-inicio-023">
+                <button id="copyReportButton" class="btn btn--secondary" type="button">
+                    Copiar
+                </button>
+
+                <button id="closeReportFooterButton" class="btn btn--primary" type="button">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="../../public/js/roar-page-transition.js"></script>
+
+    <script type="module" src="../../public/js/pages/auth/route-guard.js"></script>
+
+    <script type="module" src="../../public/js/roar-sidebar.js"></script>
+
+    <script src="../../public/js/roar-theme.js"></script>
+
+    <script src="../../public/js/roar-page-transition.js"></script>
+
+    <script type="module" src="../../public/js/pages/professor/pages-professor-inicio-1.js"></script>
+</body>
+
+</html>

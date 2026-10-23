@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROAR — Desempenho dos Alunos</title>
+    <link rel="icon" href="../../public/assets/imagens/favicon-v2.png?v=4" type="image/png" sizes="32x32">
+
+    <meta name="description"
+        content="Acompanhe o desempenho individual de cada aluno nas atividades da plataforma ROAR.">
+
+    <script src="../../public/js/roar-theme.js"></script>
+    <link rel="stylesheet" href="../../public/css/global.css">
+
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css">
+
+    <link rel="stylesheet" href="../../public/css/pages/pages-professor-alunos.css">
+</head>
+
+<body class="teacher-area" data-auth-role="teacher">
+    <div class="app-shell">
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__logo-wrap">
+                <img src="../../public/assets/imagens/logo.svg" alt="Logo ROAR" class="sidebar__logo"
+                    onclick="window.location.href='inicio.html'">
+
+                <button class="sidebar__toggle" id="sidebarToggle" type="button" aria-label="Minimizar menu">
+                    <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar__nav">
+                <a href="inicio.html" class="sidebar__link">
+                    <i class="fi fi-br-home" aria-hidden="true"></i>
+
+                    <span>Início</span>
+                </a>
+
+                <a href="alunos.html" class="sidebar__link active">
+                    <i class="fi fi-br-users" aria-hidden="true"></i>
+
+                    <span>Alunos</span>
+                </a>
+
+                <a href="atividades.html" class="sidebar__link">
+                    <i class="fi fi-br-puzzle-pieces" aria-hidden="true"></i>
+
+                    <span>Atividades</span>
+                </a>
+
+                <a href="relatorios.html" class="sidebar__link">
+                    <i class="fi fi-br-chart-simple" aria-hidden="true"></i>
+
+                    <span>Relatórios</span>
+                </a>
+
+                <a href="perfil.html" class="sidebar__link">
+                    <i class="fi fi-br-user" aria-hidden="true"></i>
+
+                    <span>Perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__footer">
+                <a href="../auth/login-professor.html" class="sidebar__link" data-action="logout">
+                    <i class="fi fi-br-exit" aria-hidden="true"></i>
+
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar">
+                <div class="u-pages-professor-alunos-001">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu">
+                        <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="navbar__page-title">
+                        <h1>Alunos</h1>
+
+                        <p>
+                            Consulte a turma e acompanhe o
+                            desempenho individual.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="navbar__right u-pages-professor-alunos-001">
+                    <button class="btn btn--primary u-pages-professor-alunos-003" type="button"
+                        onclick="window.location.href='cadastro-aluno.html'">
+                        <i class="fi fi-br-plus u-pages-professor-alunos-004" aria-hidden="true"></i>
+
+                        Novo Aluno
+                    </button>
+
+                    <button class="navbar__icon-btn u-pages-professor-alunos-005" id="btnNotif" type="button"
+                        data-tooltip="Notificações" aria-label="Notificações">
+                        <i class="fi fi-br-bell" aria-hidden="true"></i>
+
+                        <span class="u-pages-professor-alunos-006"></span>
+                    </button>
+
+                    <a href="perfil.html" class="navbar__avatar u-pages-professor-alunos-007" title="Perfil"
+                        aria-label="Abrir perfil">
+                        P
+                    </a>
+                </div>
+            </header>
+
+            <main class="page-body fade-in">
+                <div class="grid-4 u-pages-professor-alunos-008" id="turmaStats"></div>
+
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <i class="fi fi-br-search" aria-hidden="true"></i>
+
+                        <input type="search" id="searchInput" placeholder="Buscar aluno..." autocomplete="off"
+                            aria-label="Buscar aluno">
+                    </div>
+
+                    <select class="filter-select" id="filterNivel" aria-label="Filtrar por nível">
+                        <option value="">
+                            Todos os níveis
+                        </option>
+
+                        <option value="1">
+                            Nível 1 — Suporte Visual Puro
+                        </option>
+
+                        <option value="2">
+                            Nível 2 — Aprendiz Guiado
+                        </option>
+
+                        <option value="3">
+                            Nível 3 — Autonomia Contextual
+                        </option>
+                    </select>
+
+                    <select class="filter-select" id="filterTurma" aria-label="Filtrar por ano escolar">
+                        <option value="">
+                            Todos os anos
+                        </option>
+                    </select>
+
+                    <select class="filter-select" id="filterOrdem" aria-label="Ordenar alunos">
+                        <option value="nome">
+                            Ordenar: Nome
+                        </option>
+
+                        <option value="xp">
+                            Ordenar: XP
+                        </option>
+
+                        <option value="prog">
+                            Ordenar: Progresso
+                        </option>
+                    </select>
+                </div>
+
+                <div class="students-grid" id="studentsGrid"></div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalAluno" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="modalNome">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="u-pages-professor-alunos-001">
+                    <div class="student-avatar u-pages-professor-alunos-009" id="modalAvatar"></div>
+
+                    <div>
+                        <div id="modalNome" class="u-pages-professor-alunos-010"></div>
+
+                        <div id="modalMeta" class="u-pages-professor-alunos-011"></div>
+
+                        <span class="nivel-tag" id="modalNivelTag"></span>
+                    </div>
+                </div>
+
+                <button class="modal-close" type="button" aria-label="Fechar">
+                    <i class="fi fi-br-cross" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-stats" id="modalStats"></div>
+
+            <section class="student-management" aria-labelledby="studentManagementTitle">
+                <div class="student-management__heading">
+                    <div>
+                        <h2 id="studentManagementTitle">
+                            Dados do aluno
+                        </h2>
+
+                        <p>
+                            Edite os dados e o nível de aprendizagem.
+                        </p>
+                    </div>
+
+                    <i class="fi fi-br-user-pen" aria-hidden="true"></i>
+                </div>
+
+                <form id="formEditarAluno" class="student-edit-form">
+                    <div class="student-edit-grid">
+                        <label class="student-edit-field">
+                            <span>Nome</span>
+
+                            <input id="editarAlunoNome" name="nome" type="text" minlength="3" maxlength="120"
+                                autocomplete="name" required>
+                        </label>
+
+                        <label class="student-edit-field">
+                            <span>Ano escolar</span>
+
+                            <select id="editarAlunoAno" name="ano_escolar" required>
+                                <option value="6º Ano">6º Ano</option>
+                                <option value="7º Ano">7º Ano</option>
+                                <option value="8º Ano">8º Ano</option>
+                                <option value="9º Ano">9º Ano</option>
+                                <option value="1º Ano E.M">1º Ano E.M.</option>
+                                <option value="2º Ano E.M">2º Ano E.M.</option>
+                                <option value="3º Ano E.M">3º Ano E.M.</option>
+                            </select>
+                        </label>
+
+                        <label class="student-edit-field student-edit-field--full">
+                            <span>E-mail</span>
+
+                            <input id="editarAlunoEmail" name="email" type="email" maxlength="150" autocomplete="email"
+                                required>
+                        </label>
+
+
+                        <label class="student-edit-field student-edit-field--full">
+                            <span>Nível de aprendizagem</span>
+
+                            <select id="editarAlunoNivel" name="nivel" required>
+                                <option value="1">
+                                    Nível 1 — Suporte Visual Puro
+                                </option>
+
+                                <option value="2">
+                                    Nível 2 — Aprendiz Guiado
+                                </option>
+
+                                <option value="3">
+                                    Nível 3 — Autonomia Contextual
+                                </option>
+                            </select>
+                        </label>
+
+                        <label class="student-edit-field student-edit-field--full">
+                            <span>Nível de suporte TEA</span>
+
+                            <select id="editarAlunoSuporteTea" name="nivel_suporte_tea" aria-describedby="editarAlunoSuporteTeaAjuda">
+                                <option value="">Não informado</option>
+                                <option value="1">Nível 1 — 6 peças no Jogo das Sombras</option>
+                                <option value="2">Nível 2 — 4 peças no Jogo das Sombras</option>
+                                <option value="3">Nível 3 — 2 peças no Jogo das Sombras</option>
+                            </select>
+                            <small id="editarAlunoSuporteTeaAjuda">Opcional. Informado pelo professor, separadamente da triagem de aprendizagem.</small>
+                        </label>
+                    </div>
+
+                    <p id="editarAlunoMensagem" class="student-management__message" aria-live="polite"></p>
+
+                    <div class="student-management__actions">
+                        <button class="btn btn--danger" id="btnDesativarAluno" type="button">
+                            <i class="fi fi-br-trash" aria-hidden="true"></i>
+
+                            Desativar aluno
+                        </button>
+
+                        <button class="btn btn--primary" id="btnSalvarAluno" type="submit">
+                            <i class="fi fi-br-disk" aria-hidden="true"></i>
+
+                            Salvar alterações
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <div class="section-header mb-md">
+                <h2 class="u-pages-professor-alunos-012">
+                    Desempenho por atividade
+                </h2>
+
+                <span class="u-pages-professor-alunos-013">
+                    Acertos × erros
+                </span>
+            </div>
+
+            <div class="activity-chart" id="modalChart"></div>
+
+            <div class="chart-legend">
+                <span>
+                    <span class="legend-dot u-pages-professor-alunos-014"></span>
+                    Acertos
+                </span>
+
+                <span>
+                    <span class="legend-dot u-pages-professor-alunos-015"></span>
+                    Erros
+                </span>
+            </div>
+
+            <div class="section-header mb-md">
+                <h2 class="u-pages-professor-alunos-012">
+                    Detalhamento por atividade
+                </h2>
+            </div>
+
+            <div class="student-table-wrapper">
+                <table class="act-table">
+                    <thead>
+                        <tr>
+                            <th>Atividade</th>
+                            <th>Módulo</th>
+
+                            <th class="u-pages-professor-alunos-016">
+                                Acertos
+                            </th>
+
+                            <th class="u-pages-professor-alunos-016">
+                                Erros
+                            </th>
+
+                            <th>Aproveitamento</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="modalTable"></tbody>
+                </table>
+            </div>
+
+            <section class="student-pin-panel" aria-labelledby="studentPinTitle">
+                <div class="student-pin-panel__heading">
+                    <div>
+                        <h2 id="studentPinTitle">
+                            Redefinir PIN de acesso
+                        </h2>
+
+                        <p>
+                            Gere um novo PIN e entregue-o
+                            diretamente ao aluno.
+                        </p>
+                    </div>
+
+                    <i class="fi fi-br-key" aria-hidden="true"></i>
+                </div>
+
+                <div class="student-pin-actions">
+                    <button class="btn btn--primary" id="btnRedefinirPin" type="button">
+                        <i class="fi fi-br-refresh" aria-hidden="true"></i>
+
+                        Gerar novo PIN
+                    </button>
+                </div>
+
+                <div class="generated-pin" id="pinGeradoContainer" hidden>
+                    <div class="generated-pin__content">
+                        <span class="generated-pin__label">
+                            Novo PIN
+                        </span>
+
+                        <strong class="generated-pin__value" id="pinGerado">
+                            ----
+                        </strong>
+
+                        <span class="generated-pin__student">
+                            Entregue este PIN diretamente ao aluno.
+                        </span>
+                    </div>
+
+                    <button class="btn btn--secondary generated-pin__copy" id="btnCopiarPin" type="button" disabled>
+                        <i class="fi fi-br-copy" aria-hidden="true"></i>
+
+                        Copiar PIN
+                    </button>
+                </div>
+
+                <p class="student-pin-help" id="pinAlunoMensagem" aria-live="polite"></p>
+            </section>
+
+            <div class="u-pages-professor-alunos-017">
+                <button class="btn btn--secondary" type="button">
+                    Fechar
+                </button>
+
+                <button class="btn btn--primary" id="btnRelatorio" type="button">
+                    <i class="fi fi-br-brain u-pages-professor-alunos-018" aria-hidden="true"></i>
+
+                    Gerar Relatório
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="../../public/js/pages/auth/route-guard.js"></script>
+
+    <script src="../../public/js/roar-storage.js"></script>
+
+    <script src="../../public/js/roar-page-transition.js"></script>
+
+    <script src="../../public/js/roar-sidebar.js"></script>
+    <script src="../../public/js/roar-theme.js"></script>
+
+    <script type="module" src="../../public/js/pages/professor/pages-professor-alunos-1.js?v=5"></script>
+</body>
+
+</html>

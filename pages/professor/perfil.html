@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Consulta e atualização do perfil do professor.">
+
+    <title>ROAR — Perfil do Professor</title>
+    <link rel="icon" href="../../public/assets/imagens/favicon-v2.png?v=4" type="image/png" sizes="32x32">
+
+    <script src="../../public/js/roar-theme.js"></script>
+    <link rel="stylesheet" href="../../public/css/global.css">
+
+    <link rel="stylesheet" href="../../public/css/components/feedback.css">
+
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css">
+
+    <link rel="stylesheet" href="../../public/css/pages/pages-professor-perfil.css">
+</head>
+
+<body class="teacher-area" data-auth-role="teacher">
+    <div class="app-shell">
+        <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+        <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+            <div class="sidebar__logo-wrap">
+                <a href="inicio.html" aria-label="Ir para o início">
+                    <img src="../../public/assets/imagens/logo.svg" alt="Logo ROAR" class="sidebar__logo">
+                </a>
+
+                <button class="sidebar__toggle" id="sidebarToggle" type="button" aria-label="Minimizar menu"
+                    aria-controls="sidebar">
+                    <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar__nav" aria-label="Navegação do professor">
+                <a href="inicio.html" class="sidebar__link">
+                    <i class="fi fi-br-home" aria-hidden="true"></i>
+
+                    <span>Início</span>
+                </a>
+
+                <a href="alunos.html" class="sidebar__link">
+                    <i class="fi fi-br-users" aria-hidden="true"></i>
+
+                    <span>Alunos</span>
+                </a>
+
+                <a href="atividades.html" class="sidebar__link">
+                    <i class="fi fi-br-puzzle-pieces" aria-hidden="true"></i>
+
+                    <span>Atividades</span>
+                </a>
+
+                <a href="relatorios.html" class="sidebar__link">
+                    <i class="fi fi-br-chart-simple" aria-hidden="true"></i>
+
+                    <span>Relatórios</span>
+                </a>
+
+                <a href="perfil.html" class="sidebar__link active" aria-current="page">
+                    <i class="fi fi-br-user" aria-hidden="true"></i>
+
+                    <span>Perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__footer">
+                <button class="sidebar__link" id="logoutButton" data-action="logout" type="button">
+                    <i class="fi fi-br-exit" aria-hidden="true"></i>
+
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="navbar">
+                <div class="profile-title-wrap">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu"
+                        aria-controls="sidebar">
+                        <i class="fi fi-br-menu-burger" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="navbar__page-title">
+                        <h1>Meu perfil</h1>
+
+                        <p>
+                            Consulte e atualize seus dados pessoais.
+                        </p>
+                    </div>
+                </div>
+
+                <a href="perfil.html" class="navbar__avatar profile-navbar-avatar" id="navbarAvatar"
+                    title="Abrir perfil" aria-label="Abrir perfil">
+                    P
+                </a>
+            </header>
+
+            <main class="page-body fade-in profile-page">
+
+                <section class="profile-summary" aria-labelledby="profileName">
+                    <div class="profile-avatar" id="profileAvatar" aria-hidden="true">
+                        P
+                    </div>
+
+                    <div class="profile-summary__text">
+                        <p class="profile-summary__label">
+                            Conta de professor
+                        </p>
+
+                        <h2 id="profileName">
+                            Carregando perfil...
+                        </h2>
+
+                        <p id="profileEmail">
+                            Aguarde um instante.
+                        </p>
+                    </div>
+
+                    <span class="profile-status">
+                        <span></span>
+                        Conta ativa
+                    </span>
+                </section>
+
+                <form id="profileForm" novalidate>
+                    <div class="profile-grid">
+                        <section class="card profile-section">
+                            <div class="profile-section__heading">
+                                <i class="fi fi-br-user" aria-hidden="true"></i>
+
+                                <div>
+                                    <h2>Dados pessoais</h2>
+
+                                    <p>
+                                        Identificação e contato.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="profile-form">
+                                <div class="form-group">
+                                    <label for="profileNameInput">
+                                        Nome completo
+                                    </label>
+
+                                    <input id="profileNameInput" name="name" type="text" autocomplete="name"
+                                        minlength="3" maxlength="150" placeholder="Digite seu nome" required disabled>
+
+                                    <small class="form-error" id="profileNameError"></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileEmailInput">
+                                        E-mail
+                                    </label>
+
+                                    <input id="profileEmailInput" name="email" type="email" autocomplete="email"
+                                        maxlength="254" placeholder="professor@escola.com" required disabled>
+
+                                    <small class="form-error" id="profileEmailError"></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileCpfInput">
+                                        CPF
+                                    </label>
+
+                                    <input id="profileCpfInput" name="cpf" type="text" inputmode="numeric"
+                                        autocomplete="off" maxlength="14" placeholder="000.000.000-00" required
+                                        disabled>
+
+                                    <small class="form-error" id="profileCpfError"></small>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="card profile-section">
+                            <div class="profile-section__heading">
+                                <i class="fi fi-br-settings" aria-hidden="true"></i>
+
+                                <div>
+                                    <h2>Informações da conta</h2>
+
+                                    <p>
+                                        Dados controlados pela plataforma.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <dl class="profile-data">
+                                <div>
+                                    <dt>Identificador</dt>
+                                    <dd id="profileId">—</dd>
+                                </div>
+
+                                <div>
+                                    <dt>Tipo de acesso</dt>
+                                    <dd>Professor</dd>
+                                </div>
+
+                                <div>
+                                    <dt>Conta criada em</dt>
+                                    <dd id="profileCreatedAt">—</dd>
+                                </div>
+
+                                <div>
+                                    <dt>Idioma</dt>
+                                    <dd>Português (Brasil)</dd>
+                                </div>
+                            </dl>
+                        </section>
+                    </div>
+
+                    <section class="card profile-section">
+                        <div class="profile-actions">
+                            <p id="profileStatusMessage">
+                                Carregando seus dados...
+                            </p>
+
+                            <div>
+                                <button class="btn btn--secondary" id="resetProfileButton" type="button" disabled>
+                                    Cancelar alterações
+                                </button>
+
+                                <button class="btn btn--primary" id="saveProfileButton" type="submit" disabled>
+                                    Salvar alterações
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="../../public/js/pages/auth/route-guard.js"></script>
+
+    <script src="../../public/js/roar-page-transition.js"></script>
+    <script src="../../public/js/roar-theme.js"></script>
+
+    <script type="module" src="../../public/js/roar-sidebar.js"></script>
+
+    <script type="module" src="../../public/js/pages/professor/pages-professor-perfil-1.js"></script>
+</body>
+
+</html>

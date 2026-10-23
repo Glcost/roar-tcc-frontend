@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROAR — Cadastro de Aluno</title>
+    <link rel="icon" href="../../public/assets/imagens/favicon-v2.png?v=4" type="image/png" sizes="32x32">
+    <meta name="description" content="Cadastro e triagem de aluno no sistema ROAR.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../public/css/components/feedback.css">
+    <link rel="stylesheet" href="../../public/css/pages/auth.css?v=5">
+    <link rel="stylesheet" href="../../public/css/pages/pages-professor-cadastro-aluno.css?v=3">
+</head>
+
+<body class="auth-page auth-page--student-register" data-auth-role="teacher">
+    <main class="auth-card">
+        <section class="auth-visual" aria-labelledby="student-register-greeting">
+            <img src="../../public/assets/imagens/logo.svg" alt="ROAR" class="auth-logo">
+            <div class="auth-copy">
+                <h1 id="student-register-greeting" class="auth-greeting">Olá, Professor</h1>
+                <p><strong class="auth-highlight auth-highlight--green">Cadastre seu aluno</strong> e personalize o
+                    aprendizado.<br>Faça uma triagem simples e acompanhe<br>cada etapa do seu desenvolvimento.</p>
+            </div>
+            <div class="auth-mascot-stage" aria-hidden="true">
+                <img src="../../public/assets/imagens/dino2.png" alt="" class="auth-dino">
+            </div>
+        </section>
+
+        <section class="auth-form-panel auth-form-panel--student-register">
+            <form id="cadastroForm" class="auth-form auth-form--student-register">
+                <section id="step1" class="student-register-step">
+                    <header class="auth-form-header">
+                        <h2>Cadastre seu aluno!</h2>
+                        <p class="auth-form-label">Dados</p>
+                    </header>
+
+                    <div class="auth-fields student-register-fields">
+                        <label class="sr-only" for="nomeAluno">Nome</label>
+                        <input id="nomeAluno" class="auth-input" type="text" placeholder="Nome" autocomplete="name"
+                            required>
+
+                        <label class="sr-only" for="anoEscolar">Ano escolar</label>
+                        <select id="anoEscolar" class="auth-input auth-select" required>
+                            <option value="" disabled selected>Ano Escolar</option>
+                            <option value="6º Ano">6º Ano</option>
+                            <option value="7º Ano">7º Ano</option>
+                            <option value="8º Ano">8º Ano</option>
+                            <option value="9º Ano">9º Ano</option>
+                            <option value="1º Ano E.M">1º Ano E.M.</option>
+                            <option value="2º Ano E.M">2º Ano E.M.</option>
+                            <option value="3º Ano E.M">3º Ano E.M.</option>
+                        </select>
+
+                        <label class="sr-only" for="emailAluno">E-mail</label>
+                        <input id="emailAluno" class="auth-input" type="email" placeholder="E-mail" autocomplete="email"
+                            required>
+
+                        <label class="student-level-label" for="nivelSuporteTea">Nível de suporte TEA</label>
+                        <select id="nivelSuporteTea" class="auth-input auth-select" aria-describedby="suporteTeaAjuda">
+                            <option value="">Não informado</option>
+                            <option value="1">Nível 1 — 6 peças no Jogo das Sombras</option>
+                            <option value="2">Nível 2 — 4 peças no Jogo das Sombras</option>
+                            <option value="3">Nível 3 — 2 peças no Jogo das Sombras</option>
+                        </select>
+                        <p id="suporteTeaAjuda" class="student-help">Opcional. Informado pelo professor, separadamente da triagem de aprendizagem.</p>
+
+                        <div class="student-pin-field">
+                            <label class="sr-only" for="pinGerado">PIN do aluno</label>
+                            <input id="pinGerado" class="auth-input student-pin" type="text"
+                                value="Gerado após o cadastro" readonly>
+                            <p>PIN gerado automaticamente. Anote-o após concluir.</p>
+                        </div>
+                    </div>
+
+                    <button type="button" data-action="next-triage" class="buttonlogin auth-submit">Próximo →</button>
+                    <p class="auth-switch auth-switch--center">Já tem uma conta? <a href="../auth/login-aluno.html"
+                            class="auth-link auth-link--strong">Fazer login</a></p>
+                </section>
+
+                <section id="step2" class="student-register-step" hidden>
+                    <header class="auth-form-header">
+                        <h2>Triagem</h2>
+                        <p class="auth-form-label">Quiz</p>
+                    </header>
+
+                    <div class="student-quiz">
+                        <fieldset class="student-question">
+                            <legend>1. Comunicação verbal</legend>
+                            <label class="student-option"><input type="radio" name="pergunta1" value="A1">
+                                Não-verbal/fala restrita</label>
+                            <label class="student-option"><input type="radio" name="pergunta1" value="A2"> Frases
+                                curtas/diretas</label>
+                            <label class="student-option"><input type="radio" name="pergunta1" value="A3">
+                                Fluente</label>
+                        </fieldset>
+
+                        <fieldset class="student-question">
+                            <legend>2. Nível de leitura</legend>
+                            <label class="student-option"><input type="radio" name="pergunta2" value="B1"> Não
+                                alfabetizado</label>
+                            <label class="student-option"><input type="radio" name="pergunta2" value="B2"> Leitura
+                                funcional inicial</label>
+                            <label class="student-option"><input type="radio" name="pergunta2" value="B3"> Lê textos
+                                curtos</label>
+                        </fieldset>
+                    </div>
+
+                    <div class="student-register-actions">
+                        <button type="button" data-action="back-data" class="auth-secondary">← Voltar</button>
+                        <button type="button" data-action="calculate-level" class="buttonlogin auth-submit">Próximo
+                            →</button>
+                    </div>
+                </section>
+
+                <section id="step3" class="student-register-step" hidden>
+                    <header class="auth-form-header">
+                        <h2>Confirmação</h2>
+                        <p class="auth-form-label">Conclusão</p>
+                    </header>
+
+                    <div class="student-confirmation">
+                        <div class="student-summary">
+                            <p><strong>Nome:</strong> <span id="confNome"></span></p>
+                            <p><strong>PIN:</strong> <span id="confPin" class="student-pin-value"></span></p>
+                            <small>Guarde este PIN para o aluno fazer login.</small>
+                        </div>
+
+                        <label class="student-level-label" for="nivelFinal">Nível calculado</label>
+                        <select id="nivelFinal" class="auth-input student-level" disabled>
+                            <option value="1">Nível 1 - Suporte Visual Puro</option>
+                            <option value="2">Nível 2 - Aprendiz Guiado</option>
+                            <option value="3">Nível 3 - Autonomia Contextual</option>
+                        </select>
+                        <p class="student-help">Resultado calculado pela triagem. O professor apenas visualiza.</p>
+                    </div>
+
+                    <div class="student-register-actions">
+                        <button type="button" data-action="back-triage" class="auth-secondary">← Voltar</button>
+                        <button type="button" data-action="save-student"
+                            class="buttonlogin auth-submit auth-submit--success">Salvar cadastro</button>
+                    </div>
+                </section>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="../../public/js/pages/auth/route-guard.js"></script>   
+    <script src="../../public/js/roar-page-transition.js"></script>
+    <script src="../../public/js/roar-theme.js"></script>
+    <script type="module" src="../../public/js/pages/professor/cadastro-aluno.js"></script>
+</body>
+
+</html>

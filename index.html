@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROAR — English for All Voices</title>
+  <meta name="description" content="Inglês acessível e adaptativo para pessoas neurodivergentes e estudantes com diferentes dificuldades cognitivas.">
+  <link rel="icon" href="public/assets/imagens/favicon-v2.png?v=4" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/components/transitions.css">
+  <link rel="stylesheet" href="public/css/pages/index.css">
+</head>
+<body>
+  <header class="site-header" id="topo">
+    <a class="brand" href="#topo" aria-label="ROAR — início"><img src="public/assets/imagens/logo.svg" alt="ROAR"><span>English for All Voices</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="siteNav" aria-label="Navegação principal">
+      <a href="#como-funciona">Como funciona</a><a href="#recursos">Recursos</a><a href="#escolas">Para escolas</a><a href="#planos">Planos</a>
+    </nav>
+    <div class="header-actions" aria-label="Acessos"><a class="access-link" href="pages/auth/login-aluno.html" aria-label="Entrar como aluno">Aluno</a><a class="button button--small access-teacher" href="pages/auth/login-professor.html">Professor</a><a class="button button--small header-discover" href="#planos">Conhecer a ROAR</a></div>
+  </header>
+
+  <main>
+    <section class="hero section">
+      <div class="hero__copy reveal">
+        <p class="eyebrow">Educação inclusiva que se adapta</p>
+        <h1>Inglês para todas as vozes.</h1>
+        <p class="hero__lead">Uma experiência de aprendizagem acessível para pessoas neurodivergentes e estudantes com diferentes necessidades cognitivas — respeitando ritmos, formas de comunicação e maneiras de aprender.</p>
+        <div class="hero__actions" aria-label="Escolha sua área de acesso"><a class="button" href="pages/auth/login-aluno.html">Entrar como aluno</a><a class="button button--outline" href="pages/auth/login-professor.html">Entrar como professor</a></div><a class="hero__how-link" href="#como-funciona">Ver como funciona</a>
+        <ul class="hero__notes"><li>Experiência previsível</li><li>Conteúdo multimodal</li><li>Progresso acompanhado</li></ul>
+      </div>
+      <div class="hero__visual reveal reveal--right"><span class="hero__shape"></span><img src="public/assets/imagens/dinooriginal.png" alt="Lex, mascote da ROAR, dando boas-vindas"></div>
+    </section>
+
+    <section class="impact" aria-label="Benefícios da ROAR">
+      <div class="impact__item reveal"><strong>Um ritmo</strong><span>para cada estudante</span></div>
+      <div class="impact__item reveal"><strong>3 níveis</strong><span>de apoio adaptativo</span></div>
+      <div class="impact__item reveal"><strong>Visão clara</strong><span>para educadores</span></div>
+      <div class="impact__item reveal"><strong>Mais acesso</strong><span>com menos barreiras</span></div>
+    </section>
+
+    <section class="section section-heading reveal" id="como-funciona">
+      <p class="eyebrow">Aprender do seu jeito</p><h2>Simples para começar.<br>Flexível para evoluir.</h2>
+      <p>A plataforma organiza cada etapa para reduzir sobrecarga, ampliar a autonomia e tornar o inglês mais próximo da realidade de cada estudante.</p>
+    </section>
+
+    <section class="steps section" id="recursos">
+      <article class="step-card reveal"><div class="step-card__top"><span>01</span><div class="step-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 7c.7-3.2 3.3-5 7-5s6.3 1.8 7 5"/></svg></div></div><h3>Conhecer</h3><p>Uma triagem breve identifica preferências, formas de comunicação e o apoio necessário para iniciar.</p></article>
+      <article class="step-card reveal"><div class="step-card__top"><span>02</span><div class="step-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M7 14v6"/></svg></div></div><h3>Adaptar</h3><p>Textos, imagens, áudio, tamanho dos controles e complexidade mudam conforme o perfil de aprendizagem.</p></article>
+      <article class="step-card reveal"><div class="step-card__top"><span>03</span><div class="step-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7M3 19h18"/></svg></div></div><h3>Acompanhar</h3><p>O estudante avança sem pressão, enquanto o educador acompanha resultados e identifica próximos passos.</p></article>
+    </section>
+
+    <section class="feature section">
+      <div class="feature__image reveal"><img src="public/assets/imagens/lex-aprendizado.png" alt="Lex apresentando atividades visuais em um computador" loading="lazy"></div>
+      <div class="feature__copy reveal reveal--right"><p class="eyebrow">Experiência multimodal</p><h2>Mais caminhos para compreender.</h2><p>Imagens, sons, palavras e interações trabalham juntos. O estudante pode reconhecer, praticar e validar o conteúdo com instruções claras e estímulos na medida certa.</p><ul class="check-list"><li>Atividades visuais e auditivas</li><li>Rotinas de aprendizagem previsíveis</li><li>Sem cronômetros ou pressão desnecessária</li></ul></div>
+    </section>
+
+    <section class="feature feature--reverse section" id="escolas">
+      <div class="feature__image reveal reveal--right"><img src="public/assets/imagens/lex-relatorios.png" alt="Lex apresentando um painel de acompanhamento pedagógico" loading="lazy"></div>
+      <div class="feature__copy reveal"><p class="eyebrow">Para professores e escolas</p><h2>Informação organizada para decidir melhor.</h2><p>Relatórios objetivos mostram evolução, acertos e pontos de atenção. A escola acompanha cada estudante sem transformar inclusão em mais trabalho administrativo.</p><ul class="check-list"><li>Visão individual e por turma</li><li>Indicadores pedagógicos diretos</li><li>Planejamento com base em evidências</li></ul><a class="inline-link" href="#planos">Ver soluções para escolas</a></div>
+    </section>
+
+    <section class="pricing-section" id="planos">
+      <div class="section-heading reveal"><p class="eyebrow">Assinaturas institucionais</p><h2>Planos para cada realidade.</h2><p>A escola paga conforme o número de estudantes atendidos, com previsibilidade de custos e espaço para ampliar seu impacto.</p></div>
+      <div class="billing-choice reveal">
+        <div class="billing-toggle" role="group" aria-label="Período da assinatura"><button class="active" data-period="monthly">Mensal</button><button data-period="annual">Anual</button></div>
+        <p class="annual-note">No plano anual, sua escola recebe até 30% de desconto.</p>
+      </div>
+      <div class="pricing-grid section">
+        <article class="price-card reveal"><h3>Acolher</h3><p class="price-card__limit">Até 5 alunos</p><p class="price"><span>R$</span><strong data-monthly="249" data-annual="174">249</strong><small>/mês</small></p><a class="button button--outline" href="pages/auth/login-professor.html">Escolher Acolher</a><ul><li>Acesso completo à plataforma</li><li>Relatórios de progresso</li><li>Suporte por e-mail</li></ul></article>
+        <article class="price-card price-card--featured reveal"><p class="price-card__badge">Mais escolhido</p><h3>Crescer</h3><p class="price-card__limit">Até 15 alunos</p><p class="price"><span>R$</span><strong data-monthly="599" data-annual="419">599</strong><small>/mês</small></p><a class="button" href="pages/auth/login-professor.html">Escolher Crescer</a><ul><li>Tudo do plano Acolher</li><li>Planejamento de aulas</li><li>Suporte prioritário</li></ul></article>
+        <article class="price-card reveal"><h3>impactar</h3><p class="price-card__limit">Até 35 alunos</p><p class="price"><span>R$</span><strong data-monthly="1.199" data-annual="839">1.199</strong><small>/mês</small></p><a class="button button--outline" href="pages/auth/login-professor.html">Escolher Impactar</a><ul><li>Tudo do plano Crescer</li><li>Relatórios avançados</li><li>Acompanhamento estratégico</li></ul></article>
+      </div>
+    </section>
+
+    <section class="final-cta section reveal" aria-label="Vamos abrir novos caminhos para aprender"><img src="public/assets/imagens/lex-novos-caminhos.png" alt="Lex abrindo uma porta para novos caminhos de aprendizagem" loading="lazy"><div><p class="eyebrow">English for All Voices</p><h2>Vamos abrir novos caminhos para aprender?</h2><p>Leve uma experiência mais acessível, humana e adaptável para sua escola.</p></div><a class="button" href="#planos">Conhecer os planos</a></section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-brand"><img src="public/assets/imagens/logo.svg" alt="ROAR"><p>English for All Voices</p></div><div><strong>Explore</strong><a href="#como-funciona">Como funciona</a><a href="#recursos">Recursos</a><a href="#planos">Planos</a></div><div><strong>Acessar</strong><a href="pages/auth/login-aluno.html">Área do aluno</a><a href="pages/auth/login-professor.html">Área do professor</a></div><p class="copyright">© 2026 ROAR. Inclusão que dá voz a diferentes formas de aprender.</p></footer>
+  <script src="public/js/roar-page-transition.js"></script>
+  <script src="public/js/pages/landing/index-2.js"></script>
+</body>
+</html>
